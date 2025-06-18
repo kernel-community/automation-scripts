@@ -4,18 +4,24 @@ Python script to automatically create TinyURLs for Airtable records and update t
 
 ## Setup
 
-1. Install dependencies:
+1. Create and activate virtual environment:
+```bash
+python3 -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+2. Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-2. Set required environment variables:
+3. Set required environment variables:
 ```bash
 export AIRTABLE_API_KEY=your_airtable_api_key
 export TINYURL_API_TOKEN=your_tinyurl_api_token
 ```
 
-3. Optional configuration (defaults provided):
+4. Optional configuration (defaults provided):
 ```bash
 export AIRTABLE_BASE_ID=your_base_id
 export AIRTABLE_TABLE_NAME=your_table_name
