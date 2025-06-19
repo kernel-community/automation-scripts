@@ -22,7 +22,7 @@ async def fetch_airtable_records(session):
     }
     params = {
         'view': AIRTABLE_VIEW_NAME,
-        'fields': ['Name [Primary]', 'Record ID', 'big-url']
+        'fields': ['Name', 'rec-id', 'big-url']
     }
 
     logging.info(f"Fetching from URL: {url}")
@@ -114,14 +114,14 @@ async def main():
         for i, record in enumerate(records):
             fields = record.get('fields', {})
             record_id = record.get('id')
-            name = fields.get('Name [Primary]', 'Unknown')
-            rec_id = fields.get('Record ID')
+            name = fields.get('Name', 'Unknown')
+            rec_id = fields.get('rec-id')
             url_to_send = fields.get('big-url')
 
             logging.info(f"Processing {i+1}/{len(records)}: {name}")
 
             if not rec_id or not url_to_send:
-                await update_airtable_script_field(session, record_id, "error - missing Record ID or big-url")
+                await update_airtable_script_field(session, record_id, "error - missing rec-id or big-url")
                 continue
 
             try:
